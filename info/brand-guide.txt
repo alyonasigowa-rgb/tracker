@@ -1,0 +1,23 @@
+# Brand Guidelines for "Anna UX School" Tracker
+
+## 1. Color Palette (Strictly use these HEX codes)
+- **Primary (Indigo):** #4F46E5 (Use for main buttons, active states, primary icons)
+- **Accent (Coral):** #F97316 (Use for alerts, overdue payments, urgent notifications)
+- **Background (Light Gray):** #F9FAFB (Main app background)
+- **Surface (White):** #FFFFFF (Cards, modals, input fields)
+- **Text Main (Graphite):** #111827 (Headings, main text)
+- **Text Muted (Gray):** #6B7280 (Subtitles, secondary info, placeholders)
+- **Success (Green):** #10B981 (Completed tasks, paid invoices)
+
+## 2. Typography
+- **Font Family:** 'Inter', sans-serif (Import from Google Fonts)
+- **Headings:** Inter Bold (Weight 700), clean and modern.
+- **Body Text:** Inter Regular (Weight 400), 16px base size.
+- **Small Text:** Inter Medium (Weight 500), 14px (for tags and statuses).
+
+## 3. UI/UX Style & Mood
+- **Vibe:** Modern, minimalist, friendly, clean. Inspired by Notion and Linear.
+- **Shapes:** Rounded corners everywhere. Use `rounded-xl` for cards and `rounded-lg` for buttons.
+- **Shadows:** Very soft and subtle shadows for cards (`shadow-sm` or `shadow-md`). No heavy drop shadows.
+- **Spacing:** Generous whitespace (padding and margins). Don't cram elements together.
+- **Borders:** Very light borders for inputs and cards (`border-gray-200`).

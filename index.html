@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anna UX School — Трекер</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="auth-screen hidden">
+    <div class="auth-card">
+      <div class="brand">
+        <img class="logo-img" src="logo.png" alt="Anna UX School" />
+        <div>
+          <h1>Anna UX School</h1>
+          <p>Трекер управления</p>
+        </div>
+      </div>
+      <form id="login-form" class="auth-form">
+        <h2>Вход в систему</h2>
+        <label>
+          <span>Логин</span>
+          <input type="text" id="login-user" placeholder="anna" autocomplete="username" required />
+        </label>
+        <label>
+          <span>Пароль</span>
+          <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" required />
+        </label>
+        <div id="login-error" class="form-error hidden">Неверный логин или пароль</div>
+        <button type="submit" class="btn btn-primary btn-block">Войти</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- APP SHELL -->
+  <div id="app" class="app hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand sidebar-brand">
+        <img class="logo-img" src="logo.png" alt="Anna UX School" />
+        <div>
+          <h1>Anna UX School</h1>
+          <p>Трекер</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="nav-item active" data-view="dashboard">
+          <span class="nav-ico">▦</span> Дашборд
+        </button>
+        <button class="nav-item" data-view="students">
+          <span class="nav-ico">👥</span> Студенты
+        </button>
+        <button class="nav-item admin-only hidden" data-view="modules">
+          <span class="nav-ico">🗂</span> Модули
+        </button>
+        <button class="nav-item admin-only hidden" data-view="users">
+          <span class="nav-ico">🔑</span> Пользователи
+        </button>
+        <button class="nav-item admin-only hidden" data-view="import">
+          <span class="nav-ico">⬆</span> Импорт данных
+        </button>
+        <button class="nav-item" data-view="profile">
+          <span class="nav-ico">⚙</span> Профиль
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-chip" id="user-chip">
+          <div class="avatar" id="user-avatar">A</div>
+          <div class="user-meta">
+            <span id="user-name">Анна</span>
+            <small id="user-role">Админ</small>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-block" id="logout-btn">Выйти</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h2 id="view-title">Дашборд</h2>
+          <p id="view-subtitle">Обзор школы</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-primary admin-only hidden" id="topbar-add-student">+ Новый студент</button>
+        </div>
+      </header>
+
+      <section id="view-dashboard" class="view active">
+        <!-- counters injected -->
+      </section>
+
+      <section id="view-students" class="view">
+        <div class="card">
+          <div class="card-header">
+            <h3>Студенты</h3>
+            <input type="text" class="input search-input" id="student-search" placeholder="Поиск по имени…" />
+          </div>
+          <div id="students-list" class="table-wrap"></div>
+        </div>
+      </section>
+
+      <section id="view-modules" class="view">
+        <div class="card">
+          <div class="card-header">
+            <h3>Модули</h3>
+            <button class="btn btn-primary" id="add-module-btn">+ Новый модуль</button>
+          </div>
+          <div id="modules-list" class="stack"></div>
+        </div>
+      </section>
+
+      <section id="view-users" class="view">
+        <div class="card">
+          <div class="card-header">
+            <h3>Кураторы и пользователи</h3>
+            <button class="btn btn-primary" id="add-user-btn">+ Добавить</button>
+          </div>
+          <div id="users-list" class="table-wrap"></div>
+        </div>
+      </section>
+
+      <section id="view-profile" class="view">
+        <div class="card">
+          <div class="card-header">
+            <h3>Профиль</h3>
+            <span class="muted">Ваши учётные данные</span>
+          </div>
+          <div class="card-body">
+            <div class="form-field">
+              <label class="input-label">Имя</label>
+              <input type="text" class="input" id="profile-name" disabled />
+            </div>
+            <div class="form-field">
+              <label class="input-label">Логин</label>
+              <input type="text" class="input" id="profile-login" disabled />
+            </div>
+            <div class="form-field">
+              <label class="input-label">Роль</label>
+              <input type="text" class="input" id="profile-role" disabled />
+            </div>
+            <hr />
+            <h4>Смена пароля</h4>
+            <div class="form-field">
+              <label class="input-label">Новый пароль</label>
+              <input type="password" class="input" id="profile-pass" autocomplete="new-password" />
+            </div>
+            <button class="btn btn-primary" id="profile-save">Сохранить пароль</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-import" class="view">
+        <div class="card">
+          <div class="card-header">
+            <h3>Импорт данных</h3>
+            <span class="muted">Загрузите CSV или Excel (.csv, .xlsx)</span>
+          </div>
+
+          <!-- mode tabs -->
+          <div class="import-tabs" id="import-tabs">
+            <button class="import-tab active" data-mode="students">Импорт студентов</button>
+            <button class="import-tab" data-mode="homework">Импорт домашних заданий</button>
+          </div>
+
+          <!-- step 1: upload -->
+          <div id="import-step-1">
+            <div class="dropzone" id="dropzone">
+              <p><strong>Перетащите файл сюда</strong> или нажмите для выбора</p>
+              <p class="muted small" id="import-drop-hint">Поддерживаются .csv и .xlsx</p>
+            </div>
+            <input type="file" id="import-file" accept=".csv,.xlsx" hidden />
+          </div>
+
+          <!-- step 2: mapping -->
+          <div id="import-step-2" class="hidden">
+            <h4>2. Сопоставление полей</h4>
+            <div id="import-sheet-row" class="hidden sheet-row">
+              <label class="input-label">Лист в файле</label>
+              <select class="input" id="import-sheet-select" style="max-width:320px;"></select>
+            </div>
+            <p class="muted small" id="import-mapping-hint">Укажите, какой столбец таблицы соответствует полю приложения.</p>
+            <div id="mapping-fields" class="mapping-grid"></div>
+            <div class="row-actions">
+              <button class="btn btn-ghost" id="import-back-1">Назад</button>
+              <button class="btn btn-primary" id="import-next-preview">К предпросмотру →</button>
+            </div>
+          </div>
+
+          <!-- step 3: preview -->
+          <div id="import-step-3" class="hidden">
+            <h4>3. Предпросмотр</h4>
+            <p class="muted small" id="import-preview-hint"></p>
+            <div class="table-wrap" id="import-preview"></div>
+            <div class="row-actions">
+              <button class="btn btn-ghost" id="import-back-2">Назад</button>
+              <button class="btn btn-primary" id="confirm-import">Подтвердить импорт</button>
+            </div>
+          </div>
+          <div id="import-result" class="hidden alert alert-success"></div>
+        </div>
+      </section>
+
+      <!-- STUDENT PAGE -->
+      <section id="view-student" class="view">
+        <button class="btn btn-ghost" id="student-back">← Назад к списку</button>
+        <div id="student-detail"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODALS -->
+  <div id="modal-root"></div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
